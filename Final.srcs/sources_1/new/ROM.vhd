@@ -43,6 +43,7 @@ signal ROMarray : ROM_type;
 begin
     ROMarray(1) <= "001";
     ROMarray(2) <= "010";
+    ROMarray(3) <= "010";
     dataOut <= ROMarray(to_integer(unsigned(address)));
 
 end Behavioral;

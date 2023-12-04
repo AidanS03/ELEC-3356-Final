@@ -24,7 +24,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx leaf cells in this code.
@@ -40,8 +40,18 @@ entity RAM is
 end RAM;
 
 architecture Behavioral of RAM is
+type RAM_type is array(0 to 35) of std_logic_vector(0 to 35);
+signal RAMarray : RAM_type;
 
 begin
-
+process(clk)
+begin
+    if rising_edge(clk) then
+        if writeEn = '1' then 
+            RAMarray(to_integer(unsigned(address))) <= dataIn;
+        end if;
+    end if;
+end process;
+dataOut <= RAMarray(to_integer(unsigned(address)));
 
 end Behavioral;

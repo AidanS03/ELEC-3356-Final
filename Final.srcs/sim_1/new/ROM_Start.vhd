@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date: 12/04/2023 05:38:48 PM
+-- Create Date: 12/05/2023 11:28:21 AM
 -- Design Name: 
--- Module Name: ROM - Behavioral
+-- Module Name: ROM_Start - Behavioral
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -24,26 +24,20 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
-use IEEE.NUMERIC_STD.ALL;
+--use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx leaf cells in this code.
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity ROM is
-    Port (address : in std_logic_vector(0 to 35 );
-        dataOut : out std_logic_vector(0 to 2));
-end ROM;
+entity ROM_Start is
+--  Port ( );
+end ROM_Start;
 
-architecture Behavioral of ROM is
-type ROM_type is array(0 to 35) of std_logic_vector(0 to 2);
-signal ROMarray : ROM_type;
+architecture Behavioral of ROM_Start is
 
 begin
-    ROMarray(1) <= "001";
-    ROMarray(2) <= "010";
-    ROMarray(3) <= "100";
-    dataOut <= ROMarray(to_integer(unsigned(address)));
+
 
 end Behavioral;

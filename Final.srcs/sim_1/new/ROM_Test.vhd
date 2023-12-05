@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date: 12/04/2023 05:38:48 PM
+-- Create Date: 12/05/2023 11:07:49 AM
 -- Design Name: 
--- Module Name: ROM - Behavioral
+-- Module Name: ROM_Test - Behavioral
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -31,19 +31,33 @@ use IEEE.NUMERIC_STD.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity ROM is
-    Port (address : in std_logic_vector(0 to 35 );
-        dataOut : out std_logic_vector(0 to 2));
-end ROM;
+entity ROM_Test is
+--  Port ( );
+end ROM_Test;
 
-architecture Behavioral of ROM is
-type ROM_type is array(0 to 35) of std_logic_vector(0 to 2);
-signal ROMarray : ROM_type;
-
+architecture Behavioral of ROM_Test is
+    component ROM_Solution is
+        Port (address : in std_logic_vector(0 to 5 );
+            dataOut : out std_logic_vector(0 to 2));
+    end component;
+    signal address : std_logic_vector(0 to 5);
+    signal dataOut : std_logic_vector(0 to 2);
 begin
-    ROMarray(1) <= "001";
-    ROMarray(2) <= "010";
-    ROMarray(3) <= "100";
-    dataOut <= ROMarray(to_integer(unsigned(address)));
+    tb : ROM_Solution port map(address => address,
+        dataOut => dataOut);
+process
+begin
+    address <= "000001";
+    wait for 100ns;
+    
+    address <= "000010";
+    wait for 100ns;
+    
+    address <= "000011";
+    wait for 100ns;
+    
+    address <= "100011";
+    wait;    
+end process;
 
 end Behavioral;

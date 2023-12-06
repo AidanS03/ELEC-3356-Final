@@ -38,9 +38,18 @@ end ROM_Start;
 
 architecture Behavioral of ROM_Start is
 type ROM_type is array(0 to 20) of std_logic_vector(0 to 3);
-signal ROMarray : ROM_type := ("1010", "0000", "0010", "0000", "0101", "0001", "0000", "0010", "0000", "0010", 
-    "0101", "0011", "0000", "0011", "0100", "0101", "0010", "0101", "0011", "0101", "0101");
-
+signal ROMarray : ROM_type := ("1010", 
+                               "0000", "0010", 
+                               "0000", "0101", 
+                               "0001", "0000", 
+                               "0010", "0000", 
+                               "0010", "0101", 
+                               "0011", "0000", 
+                               "0011", "0100", 
+                               "0101", "0010", 
+                               "0101", "0011", 
+                               "0101", "0101");
+--                              ^Row    ^Col for each start location
 begin
     dataOut <= ROMarray(to_integer(unsigned(address)));
 

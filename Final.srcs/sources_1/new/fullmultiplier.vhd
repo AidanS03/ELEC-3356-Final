@@ -42,7 +42,7 @@ architecture Behavioral of fullmultiplier is
 
 begin
 
-    product <= 
+   
 
 
 end Behavioral;

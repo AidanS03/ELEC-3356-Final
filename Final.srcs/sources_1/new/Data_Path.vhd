@@ -32,10 +32,44 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity Data_Path is
---  Port ( );
+    Port (BoardSwitch, ModuleSwitch : in std_logic_vector(0 to 2);
+         saveNumber, saveIndex, checkAns : in std_logic;
+         LEDout : out std_logic_vector(0 to 5);
+         TxOut : out std_logic);
 end Data_Path;
 
 architecture Behavioral of Data_Path is
+
+component RAM is
+    Port (address : in std_logic_vector(0 to 5); 
+        dataIn : in std_logic_vector(0 to 2);
+        writeEN : in std_logic;
+        clk : in std_logic;
+        dataOut : out std_logic_vector(0 to 2));
+end component;
+
+component ROM_Solution is
+    Port (address : in std_logic_vector(0 to 5 );
+        dataOut : out std_logic_vector(0 to 2));
+end component;
+
+component ROM_Start is
+    Port (address : in std_logic_vector(0 to 4);
+        dataOut : out std_logic_vector(0 to 3));
+end component;
+
+component MUX is
+    Port (Num1 : in std_logic_vector(0 to 2);
+        Num2 : in std_logic_vector(0 to 2);
+        MUXselect : in std_logic;
+        Output : out std_logic_vector(0 to 2));
+end component;
+
+component serial_test is
+	port(CLK100MHZ : in std_logic;
+    	 reset : in std_logic;
+         txbit : out std_logic);
+end component;
 
 begin
 

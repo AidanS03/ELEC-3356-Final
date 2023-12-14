@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date: 12/04/2023 05:38:48 PM
+-- Create Date: 10/06/2023 12:18:27 PM
 -- Design Name: 
--- Module Name: ROM - Behavioral
+-- Module Name: MUX - Behavioral
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -24,26 +24,25 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
-use IEEE.NUMERIC_STD.ALL;
+--use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx leaf cells in this code.
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity ROM is
-    Port (address : in std_logic_vector(0 to 35 );
-        dataOut : out std_logic_vector(0 to 2));
-end ROM;
+entity MUX is
+    Port (Num1 : in std_logic_vector(0 to 2);
+        Num2 : in std_logic_vector(0 to 2);
+        MUXselect : in std_logic;
+        Output : out std_logic_vector(0 to 2));
+end MUX;
 
-architecture Behavioral of ROM is
-type ROM_type is array(0 to 35) of std_logic_vector(0 to 2);
-signal ROMarray : ROM_type;
+architecture Behavioral of MUX is
 
 begin
-    ROMarray(1) <= "001";
-    ROMarray(2) <= "010";
-    ROMarray(3) <= "100";
-    dataOut <= ROMarray(to_integer(unsigned(address)));
-
+    with MUXselect select
+        Output <= Num1 when '0',
+            Num2 when '1',
+            "000" when others;
 end Behavioral;

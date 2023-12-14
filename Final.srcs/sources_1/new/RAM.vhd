@@ -36,7 +36,7 @@ entity RAM is
         dataIn : in std_logic_vector(0 to 2);
         writeEN : in std_logic;
         clk : in std_logic;
-        dataOut : out std_logic_vector(0 to 2));
+        dataOut : out std_logic_vector(0 to 7));
 end RAM;
 
 architecture Behavioral of RAM is
@@ -52,6 +52,6 @@ begin
         end if;
     end if;
 end process;
-dataOut <= RAMarray(to_integer(unsigned(address)));
+dataOut <= "00000" & RAMarray(to_integer(unsigned(address)));
 
 end Behavioral;

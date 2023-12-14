@@ -33,22 +33,22 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity ROM_Start is
     Port (address : in std_logic_vector(0 to 4);
-        dataOut : out std_logic_vector(0 to 3));
+        dataOut : out std_logic_vector(0 to 2));
 end ROM_Start;
 
 architecture Behavioral of ROM_Start is
-type ROM_type is array(0 to 20) of std_logic_vector(0 to 3);
-signal ROMarray : ROM_type := ("1010", 
-                               "0000", "0010", 
-                               "0000", "0101", 
-                               "0001", "0000", 
-                               "0010", "0000", 
-                               "0010", "0101", 
-                               "0011", "0000", 
-                               "0011", "0100", 
-                               "0101", "0010", 
-                               "0101", "0011", 
-                               "0101", "0101");
+type ROM_type is array(0 to 20) of std_logic_vector(0 to 2);
+signal ROMarray : ROM_type := ("010", 
+                               "000", "010", 
+                               "000", "101", 
+                               "001", "000", 
+                               "010", "000", 
+                               "010", "101", 
+                               "011", "000", 
+                               "011", "100", 
+                               "101", "010", 
+                               "101", "011", 
+                               "101", "101");
 --                              ^Row    ^Col for each start location
 begin
     dataOut <= ROMarray(to_integer(unsigned(address)));

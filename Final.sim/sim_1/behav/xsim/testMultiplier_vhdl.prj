@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../Final.srcs/sources_1/new/fullmultiplier.vhd" \
+"../../../../Final.srcs/sim_1/new/testMultiplier.vhd" \
+
+# Do not sort compile order
+nosort
